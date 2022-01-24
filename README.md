@@ -57,7 +57,7 @@ Completion - Week 13: Monday, April 18 - Sunday, April 24
 
 Presentations - Week 14: Monday, April 25 - Friday, April 29
 
-Finals - Week 15: Monday, May 2 - Sunday, May 5
+Finals - Week 15: Monday, May 2 - Thursday, May 5
 
 
 ------
