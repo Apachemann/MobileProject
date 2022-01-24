@@ -2,10 +2,11 @@ MobileProject
 
 CS 496 Semester Project - Mobile Project (Snap 'N Study)
 
+By Shawn Korns, Nermin Klapic, and Michael Cook
+
 ------
 
-CS 496 Project Abstract
-By Shawn Korns, Nermin Klapic, and Michael Cook
+**CS 496 Project Abstract**
 
 **Title - Snap ‘N Study, A mobile app study tool for students.**
 
