@@ -12,8 +12,11 @@ By Shawn Korns, Nermin Klapic, and Michael Cook
 Goals: Build the groundwork of the application. Design and stylize the user interface with minimal functionality while learning about Android development. If we have time, develop one of the smaller features of the project (vocabulary dictionary?) that works without using the camera. 
 
 Week 1: Monday, January 24 - Sunday, January 30
+
 Week 2: Monday, January 31 - Sunday, February 6
+
 Completion - Week 3: Monday, February 7 - Sunday, February 13
+
 
 **Phase 2: Camera Functionality**
 Goals: Allow the user to take pictures, parse the legible data, and use the data to create study questions. Besides AI question generation, all other features should be complete.
