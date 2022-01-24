@@ -20,7 +20,7 @@ Completion - Week 3: Monday, February 7 - Sunday, February 13
 
 
 
-**Phase 2: Camera Functionality**
+**---Phase 2: Camera Functionality---**
 
 Goals: Allow the user to take pictures, parse the legible data, and use the data to create study questions. Besides AI question generation, all other features should be complete.
 
@@ -31,7 +31,7 @@ Week 5: Monday, February 21 - Sunday, February 27
 Completion - Week 6: Monday, February 28 - Sunday, March 6
 
 
-**Phase 3: AI Development**
+**---Phase 3: AI Development---**
 
 Goals: Create AI that generates relevant questions based on data gathered from the user's picture. Likely the most difficult portion of this whole project.
 
@@ -44,7 +44,7 @@ Week 9: Monday, March 21 - Sunday, March 27
 Completion - Week 10: Monday, March 28 - Sunday, April 3
 
 
-**Phase 4: Bonus Features**
+**---Phase 4: Bonus Features---**
 
 Goals: Develop one additional feature (iOS? Desktop application?) and/or touch up and improve the application. This'll also serve as a buffer for additional time in case we need to work more on a previous phase.
 
