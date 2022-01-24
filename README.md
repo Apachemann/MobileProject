@@ -47,7 +47,7 @@ Week 11: Monday, April 4 - Sunday, April 10
 
 Week 12: Monday, April 11 - Sunday, April 17
 
-Completion Week 13: Monday, April 18 - Sunday, April 24
+Completion - Week 13: Monday, April 18 - Sunday, April 24
 
 
 Presentations - Week 14: Monday, April 25 - Friday, April 29
