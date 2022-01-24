@@ -1,6 +1,8 @@
 # MobileProject
 CS 496 Semester Project - Mobile Project (Snap 'N Study)
 
+------
+
 CS 496 Project Abstract
 By Shawn Korns, Nermin Klapic, and Michael Cook
 
