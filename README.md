@@ -8,7 +8,7 @@ By Shawn Korns, Nermin Klapic, and Michael Cook
 
 **Tentative Project Schedule**
 
-**Phase 1: Learning and Layout**
+**---Phase 1: Learning and Layout---**
 
 Goals: Build the groundwork of the application. Design and stylize the user interface with minimal functionality while learning about Android development. If we have time, develop one of the smaller features of the project (vocabulary dictionary?) that works without using the camera. 
 
