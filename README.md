@@ -1,8 +1,44 @@
-MobileProject
+# MobileProject
 
 CS 496 Semester Project - Mobile Project (Snap 'N Study)
 
 By Shawn Korns, Nermin Klapic, and Michael Cook
+
+------
+
+**Tentative Project Schedule**
+
+**Phase 1: Learning and Layout**
+Goals: Build the groundwork of the application. Design and stylize the user interface with minimal functionality while learning about Android development. If we have time, develop one of the smaller features of the project (vocabulary dictionary?) that works without using the camera. 
+
+Week 1: Monday, January 24 - Sunday, January 30
+Week 2: Monday, January 31 - Sunday, February 6
+Completion - Week 3: Monday, February 7 - Sunday, February 13
+
+**Phase 2: Camera Functionality**
+Goals: Allow the user to take pictures, parse the legible data, and use the data to create study questions. Besides AI question generation, all other features should be complete.
+
+Week 4: Monday, February 14 - Sunday, February 20
+Week 5: Monday, February 21 - Sunday, February 27
+Completion - Week 6: Monday, February 28 - Sunday, March 6
+
+**Phase 3: AI Development**
+Goals: Create AI that generates relevant questions based on data gathered from the user's picture. Likely the most difficult portion of this whole project.
+
+Week 7: Monday, March 7 - Sunday, March 13
+Spring Break! - Week 8: Monday, March 14 - Sunday, March 20
+Week 9: Monday, March 21 - Sunday, March 27
+Completion - Week 10: Monday, March 28 - Sunday, April 3
+
+**Phase 4: Bonus Features**
+Goals: Develop one additional feature (iOS? Desktop application?) and/or touch up and improve the application. This'll also serve as a buffer for additional time in case we need to work more on a previous phase.
+
+Week 11: Monday, April 4 - Sunday, April 10
+Week 12: Monday, April 11 - Sunday, April 17
+Completion Week 13: Monday, April 18 - Sunday, April 24
+
+Presentations - Week 14: Monday, April 25 - Friday, April 29
+Finals - Week 15: Monday, May 2 - Sunday, May 5  
 
 ------
 
