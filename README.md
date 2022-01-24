@@ -63,7 +63,7 @@ Finals - Week 15: Monday, May 2 - Sunday, May 5
 
 **Learning Resources**
 
-# https://developer.android.com/courses/kotlin-android-fundamentals/overview
+https://developer.android.com/courses/kotlin-android-fundamentals/overview
 
 ------
 
