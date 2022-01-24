@@ -19,7 +19,6 @@ Week 2: Monday, January 31 - Sunday, February 6
 Completion - Week 3: Monday, February 7 - Sunday, February 13
 
 
-
 **---Phase 2: Camera Functionality---**
 
 Goals: Allow the user to take pictures, parse the legible data, and use the data to create study questions. Besides AI question generation, all other features should be complete.
@@ -61,6 +60,13 @@ Finals - Week 15: Monday, May 2 - Sunday, May 5
 
 
 ------
+
+**Learning Resources**
+
+# https://developer.android.com/courses/kotlin-android-fundamentals/overview
+
+------
+
 
 **CS 496 Project Abstract**
 
