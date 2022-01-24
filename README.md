@@ -21,7 +21,7 @@ Completion - Week 3: Monday, February 7 - Sunday, February 13
 
 **---Phase 2: Camera Functionality---**
 
-Goals: Allow the user to take pictures, parse the legible data, and use the data to create study questions. Besides AI question generation, all other features should be complete.
+Goals: Allow the user to take pictures, parse the legible data, and use the data to create study questions. Besides AI question generation, most other functions should be complete.
 
 Week 4: Monday, February 14 - Sunday, February 20
 
