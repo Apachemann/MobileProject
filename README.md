@@ -1,16 +1,16 @@
 # MobileProject
-CS 496 Semester Project - Mobile Project (Snap N' Study)
+# CS 496 Semester Project - Mobile Project (Snap N' Study)
 
 CS 496 Project Abstract
 By Shawn Korns, Nermin Klapic, and Michael Cook
 
-Title - Snap ‘N Study, A mobile app study tool for students.
+**Title - Snap ‘N Study, A mobile app study tool for students.**
 
-General Description
+**General Description**
 
 The Snap ‘N Study mobile application will scan user documents using an Android smartphone. From these documents the user can generate study material using the application and the artificial intelligence integrated into the application. The application will also be continuing to progress and learn from user input after launch of the application at the end of the semester.
 
-Delivered Functions
+**Delivered Functions**
 
 Functional
 1. Phone Camera Scanning and Studying: By using the phone’s camera, the user may take a picture and the application will parse any detected legible text into data. Some recommended pictures to capture include a passage from a textbook, lecture notes, or a homework sheet. The captured data will be presented and the user is given a chance to alter the data in case of errors from the parsing process before confirming the data is correct. The user is then given several choices for how they want to change the data into a form(s) of study. Potential forms of study include flashcards, fill-in-the-blank, multiple-choice, and short answer.
@@ -26,12 +26,12 @@ Non-functional
 2. Minimal amount of user typing: The application should try to take full advantage of the phone’s touch screen to allow the user to navigate the interface quickly. For example, when processing data into a fill-in-the-blank study form, the user may tap the word that will be the blank instead of typing it. Typing will be required in some situations such as when answering a short answer question.
 3. Security related to user's information: Any and all data input to the application by the user will only be accessible by the user and the application to create the study material. This ensures that any material used to create study material cannot be plagiarized or accessed by other users.
 
-Users
+**Users**
 
 Initial users will be the development team as the application is being created and tested. After launch of the application the development team will keep administrative permissions to fix any problems or bugs that did not appear in preliminary testing.
 
 The target user will be anyone looking to expand their knowledge by creating study materials from a range of scannable documents. The user will also need to have access to an Android smartphone that is capable of scanning documents through the phone's camera. 
 
-Possible Technical Skills
+**Possible Technical Skills**
 
 The development team will need to be familiar with Android Studio for the creation of the mobile application. The development team will also need to be familiar with implementing artificial intelligence that will be creating the study material from the scanned documents.
