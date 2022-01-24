@@ -3,6 +3,7 @@ CS 496 Semester Project - Mobile Project (Snap N' Study)
 
 CS 496 Project Abstract
 By Shawn Korns, Nermin Klapic, and Michael Cook
+
 Title - Snap ‘N Study, A mobile app study tool for students.
 
 General Description
@@ -10,6 +11,7 @@ General Description
 The Snap ‘N Study mobile application will scan user documents using an Android smartphone. From these documents the user can generate study material using the application and the artificial intelligence integrated into the application. The application will also be continuing to progress and learn from user input after launch of the application at the end of the semester.
 
 Delivered Functions
+
 Functional
 1. Phone Camera Scanning and Studying: By using the phone’s camera, the user may take a picture and the application will parse any detected legible text into data. Some recommended pictures to capture include a passage from a textbook, lecture notes, or a homework sheet. The captured data will be presented and the user is given a chance to alter the data in case of errors from the parsing process before confirming the data is correct. The user is then given several choices for how they want to change the data into a form(s) of study. Potential forms of study include flashcards, fill-in-the-blank, multiple-choice, and short answer.
 For example, when the user chooses the fill-in-the-blank option, the data will be split into multiple lines with a single sentence of data residing on a line. For each line, the user will choose a word that will be the blank, or answer. After completing this process for all the available data, the user will be able to study their captured data using the fill-in-the-blank study form, where a randomized assortment of the processed sentences from earlier are presented to the user. The user must choose the correct blank to fill in the sentence, either by pressing or typing the correct choice.
@@ -21,6 +23,7 @@ Non-functional
 1. Intuitive Interface: Users will be greeted with an easy-to-understand interface on starting the application. Users may be students of any grade level or age and as such will have varying levels of technical expertise, requiring the interface to be simple.  New users will have helpful but unobtrusive tutorials that guide them through the interface and help familiarize them with the application’s feature set.
 2. Minimal amount of user typing: The application should try to take full advantage of the phone’s touch screen to allow the user to navigate the interface quickly. For example, when processing data into a fill-in-the-blank study form, the user may tap the word that will be the blank instead of typing it. Typing will be required in some situations such as when answering a short answer question.
 3. Security related to user's information: Any and all data input to the application by the user will only be accessible by the user and the application to create the study material. This ensures that any material used to create study material cannot be plagiarized or accessed by other users.
+
 Users
 
 Initial users will be the development team as the application is being created and tested. After launch of the application the development team will keep administrative permissions to fix any problems or bugs that did not appear in preliminary testing.
