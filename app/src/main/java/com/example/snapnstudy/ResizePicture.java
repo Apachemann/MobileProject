@@ -8,26 +8,26 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class CreatePicture extends AppCompatActivity implements View.OnClickListener{
+public class ResizePicture extends AppCompatActivity implements View.OnClickListener{
 
-    FloatingActionButton captureBtn;
+    FloatingActionButton resizeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_picture);
+        setContentView(R.layout.activity_resize_picture);
 
         // Grab the object of the floating action button
-        captureBtn=findViewById(R.id.floatingActionButton2);
+        resizeBtn=findViewById(R.id.floatingActionButton3);
 
-        captureBtn.setOnClickListener(this);
+        resizeBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         // Do something in response to floating action button
-        if (view == captureBtn) {
-            Intent intent = new Intent(this, ResizePicture.class);
+        if (view == resizeBtn) {
+            Intent intent = new Intent(this, FixData.class);
             startActivity(intent);
         }
     }
