@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SnapNStudy">
         <activity
+            android:name=".QuestionResult"
+            android:parentActivityName=".Question">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".Question"
+            android:parentActivityName=".EditData">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
             android:name=".FixData"
             android:parentActivityName=".ResizePicture">
 
