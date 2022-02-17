@@ -20,13 +20,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // Grab the objects of the button and floating action button
-        testBtn=(Button)findViewById(R.id.test_edit_button1);
-        addBtn=(FloatingActionButton)findViewById(R.id.floatingActionButton);
+        testBtn=findViewById(R.id.test_edit_button1);
+        addBtn=findViewById(R.id.floatingActionButton);
 
         testBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
     }
 
+    @Override
     public void onClick(View view) {
         // Do something in response to floating action button
         if (view==testBtn) {
