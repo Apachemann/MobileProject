@@ -1,6 +1,9 @@
 package com.example.snapnstudy;
 
-import androidx.annotation.Nullable;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,10 +19,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    public static final int CAMERA_ACTION_CODE = 1;
     Button testBtn;
     FloatingActionButton addBtn;
     ImageView imagePreview;
+    ActivityResultLauncher<Intent> activityResultLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         testBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
+
+        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if(result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Bundle bundle = result.getData().getExtras();
+                    Bitmap finalPhoto = (Bitmap) bundle.get("data");
+                    imagePreview.setImageBitmap(finalPhoto);
+                }
+            }
+        });
+
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if(intent.resolveActivity(getPackageManager()) != null) {
+                    activityResultLauncher.launch(intent);
+                } else {
+                    Toast.makeText(MainActivity.this, "The camera is not working",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -41,25 +68,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view==testBtn) {
             Intent intent = new Intent(this, EditData.class);
             startActivity(intent);
-        }else if(view==addBtn) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            if(intent.resolveActivity(getPackageManager()) != null) {
-                startActivityForResult(intent, CAMERA_ACTION_CODE);
-            } else {
-                Toast.makeText(MainActivity.this, "The camera is not working",
-                        Toast.LENGTH_SHORT).show();
-            }
-//            Intent intent = new Intent(this, CreatePicture.class);
-//            startActivity(intent);
         }
     }
     
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CAMERA_ACTION_CODE && resultCode == RESULT_OK && data != null) {
-            Bundle bundle = data.getExtras();
-            Bitmap finalPhoto = (Bitmap) bundle.get("data");
-            imagePreview.setImageBitmap(finalPhoto);
-        }
-    }
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(requestCode == CAMERA_ACTION_CODE && resultCode == RESULT_OK && data != null) {
+//            Bundle bundle = data.getExtras();
+//            Bitmap finalPhoto = (Bitmap) bundle.get("data");
+//            imagePreview.setImageBitmap(finalPhoto);
+//        }
+//    }
 }
