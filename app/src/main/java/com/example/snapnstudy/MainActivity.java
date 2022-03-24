@@ -16,8 +16,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,8 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Declare initial variables
     Button testBtn;
     FloatingActionButton addBtn;
-    ImageView imagePreview;
-    TextView ocrText;
     ActivityResultLauncher<Intent> activityResultLauncher;
     private static final int REQUEST_CAMERA_CODE = 100;
 
@@ -51,10 +47,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Grab the objects of the button, floating action button, and image view
         testBtn=findViewById(R.id.test_edit_button1);
         addBtn=findViewById(R.id.floatingActionButton);
-        imagePreview=findViewById(R.id.ivPreview);
-
-        // Grab the object of the textview to be used for the resultant OCR text
-        ocrText=findViewById(R.id.finalOCRText);
 
         testBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
@@ -72,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(result.getResultCode() == RESULT_OK && result.getData() != null) {
                     Bundle bundle = result.getData().getExtras();
                     Bitmap finalPhoto = (Bitmap) bundle.get("data");
-                    imagePreview.setImageBitmap(finalPhoto);
 
                     // (OCR) Prepare the input image
                     InputImage image = InputImage.fromBitmap(finalPhoto, 0);
@@ -87,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             // ...
                                             // (OCR) Extract text from blocks of recognized text
                                             String imageText = visionText.getText();
-                                            ocrText.setText(imageText);
 
                                             // Start and pass the recognized text to the FixData activity
                                             Intent intent = new Intent(MainActivity.this, FixData.class);

@@ -20,8 +20,8 @@
 
     <ScrollView
         android:id="@+id/scrollView1"
-        android:layout_width="367dp"
-        android:layout_height="145dp"
+        android:layout_width="372dp"
+        android:layout_height="192dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,25 +73,4 @@
         </LinearLayout>
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/ivPreview"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/finalOCRText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
-
-    <TextView
-        android:id="@+id/finalOCRText"
-        android:layout_width="128dp"
-        android:layout_height="83dp"
-        android:layout_marginBottom="16dp"
-        android:text="Translated text goes here!"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
