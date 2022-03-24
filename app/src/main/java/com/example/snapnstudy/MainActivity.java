@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -33,6 +32,7 @@ import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    // Declare initial variables
     Button testBtn;
     FloatingActionButton addBtn;
     ImageView imagePreview;
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         testBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
 
+        // Ask for camera permissions when the app starts
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[] {
                Manifest.permission.CAMERA
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         public void onSuccess(Text visionText) {
                                             // Task completed successfully
                                             // ...
+                                            // (OCR) Extract text from blocks of recognized text
                                             String imageText = visionText.getText();
                                             ocrText.setText(imageText);
                                         }
@@ -99,8 +101,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                 }
                                             });
 
-                    // (OCR) Extract text from blocks of recognized text
-                    
                 }
             }
         });
@@ -118,9 +118,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
-    }
-
-    private void processTxt(Text visionText) {
     }
 
     @Override
