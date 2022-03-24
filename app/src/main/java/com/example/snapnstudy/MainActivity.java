@@ -88,6 +88,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             // (OCR) Extract text from blocks of recognized text
                                             String imageText = visionText.getText();
                                             ocrText.setText(imageText);
+
+                                            // Start and pass the recognized text to the FixData activity
+                                            Intent intent = new Intent(MainActivity.this, FixData.class);
+                                            intent.putExtra("imageData", imageText);
+                                            startActivity(intent);
                                         }
                                     })
                                     .addOnFailureListener(
@@ -128,13 +133,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
     }
-    
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode == CAMERA_ACTION_CODE && resultCode == RESULT_OK && data != null) {
-//            Bundle bundle = data.getExtras();
-//            Bitmap finalPhoto = (Bitmap) bundle.get("data");
-//            imagePreview.setImageBitmap(finalPhoto);
-//        }
-//    }
 }
