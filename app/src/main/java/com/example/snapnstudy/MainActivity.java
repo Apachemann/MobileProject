@@ -30,6 +30,7 @@ import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    // Test
     // Declare initial variables
     Button testBtn;
     FloatingActionButton addBtn;
