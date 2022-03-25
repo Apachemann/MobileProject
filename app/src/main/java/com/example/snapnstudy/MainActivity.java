@@ -1,5 +1,14 @@
 package com.example.snapnstudy;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -7,19 +16,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,10 +30,9 @@ import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    // Declare initial variables
     Button testBtn;
     FloatingActionButton addBtn;
-    ImageView imagePreview;
-    TextView ocrText;
     ActivityResultLauncher<Intent> activityResultLauncher;
     private static final int REQUEST_CAMERA_CODE = 100;
 
@@ -51,14 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Grab the objects of the button, floating action button, and image view
         testBtn=findViewById(R.id.test_edit_button1);
         addBtn=findViewById(R.id.floatingActionButton);
-        imagePreview=findViewById(R.id.ivPreview);
-
-        // Grab the object of the textview to be used for the resultant OCR text
-        ocrText=findViewById(R.id.finalOCRText);
 
         testBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
 
+        // Ask for camera permissions when the app starts
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[] {
                Manifest.permission.CAMERA
@@ -71,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(result.getResultCode() == RESULT_OK && result.getData() != null) {
                     Bundle bundle = result.getData().getExtras();
                     Bitmap finalPhoto = (Bitmap) bundle.get("data");
-                    imagePreview.setImageBitmap(finalPhoto);
 
                     // (OCR) Prepare the input image
                     InputImage image = InputImage.fromBitmap(finalPhoto, 0);
@@ -84,8 +76,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         public void onSuccess(Text visionText) {
                                             // Task completed successfully
                                             // ...
+                                            // (OCR) Extract text from blocks of recognized text
                                             String imageText = visionText.getText();
-                                            ocrText.setText(imageText);
+
+                                            // Start and pass the recognized text to the FixData activity
+                                            Intent intent = new Intent(MainActivity.this, FixData.class);
+                                            intent.putExtra("imageData", imageText);
+                                            startActivity(intent);
                                         }
                                     })
                                     .addOnFailureListener(
@@ -99,8 +96,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                 }
                                             });
 
-                    // (OCR) Extract text from blocks of recognized text
-                    
                 }
             }
         });
@@ -120,9 +115,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private void processTxt(Text visionText) {
-    }
-
     @Override
     public void onClick(View view) {
         // Do something in response to floating action button
@@ -131,13 +123,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
     }
-    
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode == CAMERA_ACTION_CODE && resultCode == RESULT_OK && data != null) {
-//            Bundle bundle = data.getExtras();
-    //        Bitmap finalPhoto = (Bitmap) bundle.get("data");
-    //          imagePreview.setImageBitmap(finalPhoto);
-    //    }
-   // }
 }
