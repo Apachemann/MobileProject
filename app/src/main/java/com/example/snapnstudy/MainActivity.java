@@ -5,7 +5,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -21,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,6 +36,8 @@ import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -64,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         capture_picture=findViewById(R.id.floatingActionButton);
         infoBtn=findViewById(R.id.infoButton);
 
-        addBtn.setOnClickListener(this);
+        capture_picture.setOnClickListener(this);
         infoBtn.setOnClickListener(this);
 
         listView = findViewById(R.id.listview);
@@ -93,6 +99,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                Manifest.permission.CAMERA
             }, REQUEST_CAMERA_CODE);
         }
+
+        capture_picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String fileName = "photo";
+                File storageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                try {
+                    File imageFile = File.createTempFile(fileName, ".jpg", storageDirectory);
+                    currentPhotoPath = imageFile.getAbsolutePath();
+                    Uri imageUri = FileProvider.getUriForFile(MainActivity.this, "com.example.snapnstudy.fileprovider", imageFile);
+
+                    Intent intent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                    if(intent.resolveActivity(getPackageManager()) != null) {
+                        activityResultLauncher.launch(intent);
+                    } else {
+                        Toast.makeText(MainActivity.this, "The camera is not working.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+//                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+//                startActivity(intent);
+//                if(intent.resolveActivity(getPackageManager()) != null) {
+//                    activityResultLauncher.launch(intent);
+//                } else {
+//                    Toast.makeText(MainActivity.this, "The camera is not working.",
+//                            Toast.LENGTH_SHORT).show();
+//                }
+            }
+        });
 
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -132,20 +172,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                 }
                                             });
 
-                }
-            }
-        });
-
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                startActivity(intent);
-                if(intent.resolveActivity(getPackageManager()) != null) {
-                    activityResultLauncher.launch(intent);
-                } else {
-                    Toast.makeText(MainActivity.this, "The camera is not working.",
-                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
