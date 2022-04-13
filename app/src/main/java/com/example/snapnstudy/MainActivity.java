@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -60,11 +61,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // Grab the objects of the button, floating action button, and image view
-        addBtn=findViewById(R.id.floatingActionButton);
+        capture_picture=findViewById(R.id.floatingActionButton);
         infoBtn=findViewById(R.id.infoButton);
 
         addBtn.setOnClickListener(this);
         infoBtn.setOnClickListener(this);
+
+        listView = findViewById(R.id.listview);
+//        input = findViewById(R.id.input);
+//        enter = findViewById(R.id.add);
+        items = new ArrayList<>();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                name = items.get(i);
+                Intent intent = new Intent(MainActivity.this, Question.class);
+                intent.putExtra("questionData", name);
+                startActivity(intent);
+            }
+        });
+
+        //capture_picture = findViewById(R.id.camera_button);
+
+        adapter = new ListViewAdapter(getApplicationContext(), items);
+        listView.setAdapter(adapter);
 
         // Ask for camera permissions when the app starts
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
