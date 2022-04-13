@@ -38,8 +38,11 @@ import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -178,6 +181,60 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         loadContent();
     }
+    public void loadContent(){
+        File path = getApplicationContext().getFilesDir();
+        File readFrom = new File(path, "list.txt");
+        byte[] content = new byte[(int) readFrom.length()];
+        FileInputStream stream = null;
+        try {
+            stream = new FileInputStream(readFrom);
+            stream.read(content);
+
+            String s = new String(content);
+            s = s.substring(1, s.length()-1);
+            String split [] = s.split(",");
+            items = new ArrayList<>(Arrays.asList(split));
+            adapter = new ListViewAdapter(this, items);
+            listView.setAdapter(adapter);
+
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        File path = getApplicationContext().getFilesDir();
+        try {
+            FileOutputStream writer = new FileOutputStream(new File(path, "list.txt"));
+            writer.write(items.toString().getBytes());
+            writer.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        super.onDestroy();
+    }
+
+    public static void addItem (String item){
+//        if (item.length() > 20)
+//            items.add(item.substring(0, 15)+ "...");
+//        else
+        items.add(item);
+        listView.setAdapter(adapter);
+    }
+
+    public static void removeItem(int remove){
+        items.remove(remove);
+        listView.setAdapter(adapter);
+    }
+
+    Toast t;
+    private void makeToast(String s){
+        if (t != null) t.cancel();
+        t = Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT);
+        t.show();
+    }
+
     @Override
     public void onClick(View view) {
         // Do something in response to floating action button
