@@ -26,8 +26,8 @@ public class Question extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View view) {
         // Do something in response to button
         if (view == submitBtn) {
-            Intent intent = new Intent(this, QuestionResult.class);
-            startActivity(intent);
+            //Intent intent = new Intent(this, QuestionResult.class);
+            //startActivity(intent);
         }
     }
 }
