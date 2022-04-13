@@ -1,5 +1,17 @@
 package com.example.snapnstudy;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.Toast;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -8,15 +20,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,6 +31,8 @@ import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     // Declare initial variables
@@ -35,6 +40,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button infoBtn;
     ActivityResultLauncher<Intent> activityResultLauncher;
     private static final int REQUEST_CAMERA_CODE = 100;
+    @SuppressLint("StaticFieldLeak")
+    static ListView listView;
+    static ArrayList<String> items;
+    @SuppressLint("StaticFieldLeak")
+    static ListViewAdapter adapter;
+    ImageButton capture_picture;
+    String text, name;
+    private String currentPhotoPath;
+//  EditText input;
+//  ImageView enter;
 
     // (OCR) Create an instance of TextRecognizer
     TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
