@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -138,11 +139,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onActivityResult(ActivityResult result) {
                 if(result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    Bundle bundle = result.getData().getExtras();
-                    Bitmap finalPhoto = (Bitmap) bundle.get("data");
-
+//                    Bundle bundle = result.getData().getExtras();
+//                    Bitmap finalPhoto = (Bitmap) bundle.get("data");
+                    Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
                     // (OCR) Prepare the input image
-                    InputImage image = InputImage.fromBitmap(finalPhoto, 90);
+                    InputImage image = InputImage.fromBitmap(bitmap, 90);
 
                     // (OCR) Process the image
                     Task<Text> processImage =
@@ -175,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
+        loadContent();
     }
     @Override
     public void onClick(View view) {
