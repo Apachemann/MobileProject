@@ -2,15 +2,18 @@ package com.example.snapnstudy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class FixData extends AppCompatActivity implements View.OnClickListener{
-
+public class FixData extends AppCompatActivity {
     String ocrTextFinal;
     EditText ocrErrorFix;
     FloatingActionButton saveData;
@@ -22,26 +25,28 @@ public class FixData extends AppCompatActivity implements View.OnClickListener{
 
         // Grab the object of the edit text field and floating action button
         ocrErrorFix=findViewById(R.id.editTextMultiLine);
-        saveData=findViewById(R.id.floatingActionButton4);
+        saveData=findViewById(R.id.saveData);
 
-        saveData.setOnClickListener(this);
 
         // Collect the OCR data passed from MainActivity
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             ocrTextFinal = extras.getString("imageData");
-
             // Set the edit text field to display the OCR data
             ocrErrorFix.setText(ocrTextFinal);
+
         }
+
+        saveData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = ocrErrorFix.getText().toString();
+                text.trim();
+                MainActivity.addItem(text);
+                finish();
+            }
+        });
+
     }
 
-    @Override
-    public void onClick(View view) {
-        // Do something in response to floating action button
-        if (view==saveData) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
-    }
 }
