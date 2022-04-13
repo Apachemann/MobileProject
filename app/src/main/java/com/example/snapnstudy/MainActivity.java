@@ -31,8 +31,8 @@ import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     // Declare initial variables
-    Button testBtn;
     FloatingActionButton addBtn;
+    Button infoBtn;
     ActivityResultLauncher<Intent> activityResultLauncher;
     private static final int REQUEST_CAMERA_CODE = 100;
 
@@ -45,11 +45,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // Grab the objects of the button, floating action button, and image view
-        testBtn=findViewById(R.id.test_edit_button1);
         addBtn=findViewById(R.id.floatingActionButton);
+        infoBtn=findViewById(R.id.infoButton);
 
-        testBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
+        infoBtn.setOnClickListener(this);
 
         // Ask for camera permissions when the app starts
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Bitmap finalPhoto = (Bitmap) bundle.get("data");
 
                     // (OCR) Prepare the input image
-                    InputImage image = InputImage.fromBitmap(finalPhoto, 0);
+                    InputImage image = InputImage.fromBitmap(finalPhoto, 90);
 
                     // (OCR) Process the image
                     Task<Text> processImage =
@@ -114,13 +114,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
-
     @Override
     public void onClick(View view) {
         // Do something in response to floating action button
-        if (view==testBtn) {
-            Intent intent = new Intent(this, EditData.class);
+        if (view==infoBtn) {
+            Intent intent = new Intent(this, Information.class);
             startActivity(intent);
         }
+
     }
 }
