@@ -36,7 +36,17 @@
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/header" />
+        android:layout_below="@+id/header">
+    </ListView>
+
+    <Button
+        android:id="@+id/infoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginBottom="18dp"
+        android:text="Tutorial"
+        android:layout_alignParentBottom="true"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -48,15 +58,5 @@
         android:focusable="true"
         app:srcCompat="@android:drawable/ic_menu_camera"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/infoButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginBottom="18dp"
-        android:text="Tutorial"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </RelativeLayout>
