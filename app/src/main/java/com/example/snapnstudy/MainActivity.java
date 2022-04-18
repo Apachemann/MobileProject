@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        enter = findViewById(R.id.add);
         items = new ArrayList<>();
 
+        // When item is clicked, take item data and go to Question activity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
