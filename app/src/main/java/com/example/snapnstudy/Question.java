@@ -24,7 +24,7 @@ public class Question extends AppCompatActivity {
 
         // Grab the object of the edit text field and floating action button
         FixedText=findViewById(R.id.question);
-        goHome=findViewById(R.id.homeFromText);
+        //goHome=findViewById(R.id.homeFromText);
 
         // Collect the OCR data passed from MainActivity
         Bundle extras = getIntent().getExtras();
@@ -36,14 +36,14 @@ public class Question extends AppCompatActivity {
 
         }
 
-        goHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                String text = ocrErrorFix.getText().toString();
-//                MainActivity.addItem(text);
-                finish();
-            }
-        });
+//        goHome.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                String text = ocrErrorFix.getText().toString();
+////                MainActivity.addItem(text);
+//                finish();
+//            }
+//        });
 
     }
 

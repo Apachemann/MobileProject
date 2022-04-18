@@ -6,27 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".FixData">
 
+
     <TextView
         android:id="@+id/question"
         android:layout_width="335dp"
         android:layout_height="511dp"
-        android:layout_marginTop="16dp"
+
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:gravity="start|top"
-
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/questionGenText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/questionGenText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Generate a Question"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/fillBlankGenBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
-        android:id="@+id/homeFromText"
-        android:layout_width="163dp"
-        android:layout_height="48dp"
-        android:text="Button"
+    <Button
+        android:id="@+id/fillBlankGenBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Fill-In-The-Blank"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
