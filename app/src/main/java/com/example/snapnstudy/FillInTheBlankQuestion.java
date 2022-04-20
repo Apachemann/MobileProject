@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
 
@@ -17,7 +14,6 @@ import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.sentdetect.SentenceDetectorME;
 import opennlp.tools.sentdetect.SentenceModel;
 import opennlp.tools.tokenize.WhitespaceTokenizer;
-import opennlp.tools.util.Span;
 
 public class FillInTheBlankQuestion extends AppCompatActivity {
 
@@ -82,7 +78,7 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         // Load POS detector model
         POSModel partsModel = null;
 
-        inputStream = getAssets().open("en-posmaxent.bin");
+        inputStream = getAssets().open("en-pos-maxent.zip");
         partsModel = new POSModel(inputStream);
 
         // Causes system error when trying to load this activity //
