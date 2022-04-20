@@ -35,5 +35,14 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
             questionBox.setText(questionData);
 
         }
+
+        // 1. Collect all sentences from the data passed from the Question activity
+        // 2. Randomly choose one sentence
+        // 3. Randomly choose one noun or verb from the sentence to be the blank
+        // 4. Replace the noun or verb in the sentence with _____ and the noun or verb is the answer
+        // 5. Show the sentence with the blank in the text view
+        // 6. When the user hits the submit button, check the edit text for the answer
+        // 7. Show Correct/Incorrect toast message
+        // 8. Allow the user to refresh for another randomized question
     }
 }
