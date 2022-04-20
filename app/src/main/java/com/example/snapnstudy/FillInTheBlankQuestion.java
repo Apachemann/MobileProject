@@ -7,7 +7,10 @@ import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+
+import opennlp.tools.sentdetect.SentenceModel;
 
 public class FillInTheBlankQuestion extends AppCompatActivity {
 
@@ -19,15 +22,6 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
     InputStream inputStream = null;
     SentenceModel model = null;
 
-        try {
-
-        inputStream = getAssets().open("en-sent.bin");
-        model = new SentenceModel(inputStream);
-
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +29,19 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
 
         // Create a new fill-in-the-blank question when the activity is started
         createFillInTheBlankQuestion();
+    }
+
+    protected void loadOpenNLP() {
+        InputStream inputStream = null;
+        SentenceModel model = null;
+
+        try {
+            inputStream = getAssets().open("en-sent.bin");
+            model = new SentenceModel(inputStream);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     protected void createFillInTheBlankQuestion() {
@@ -49,6 +56,9 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
             questionBox.setText(questionData);
 
         }
+
+        //Loading sentence detector model
+        loadOpenNLP();
 
         // 1. Collect all sentences from the data passed from the Question activity
         // 2. Randomly choose one sentence
