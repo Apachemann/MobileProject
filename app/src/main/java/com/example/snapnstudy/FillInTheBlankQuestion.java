@@ -9,7 +9,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Random;
 
+import opennlp.tools.postag.POSModel;
+import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.sentdetect.SentenceDetectorME;
 import opennlp.tools.sentdetect.SentenceModel;
 import opennlp.tools.util.Span;
@@ -41,41 +44,59 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
             // questionBox.setText(questionData);
         }
 
+        // 1. Collect all sentences from the data passed from the Question activity
         // Load sentence detector model
-        InputStream inputStream = null;
-        SentenceModel model = null;
+        InputStream inputStream;
+        SentenceModel sentModel = null;
         String[] sentences = null;
 
         try {
             inputStream = getAssets().open("en-sent.bin");
-            model = new SentenceModel(inputStream);
+            sentModel = new SentenceModel(inputStream);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         // Instantiating the SentenceDetectorME class
-        if (model != null) {
-            SentenceDetectorME detector = new SentenceDetectorME(model);
+        if (sentModel != null) {
+            SentenceDetectorME detector = new SentenceDetectorME(sentModel);
 
             //Detecting the sentence(s)
             sentences = detector.sentDetect(questionData);
         }
 
-        // Print the sentences to the text view
-        int arraySize = sentences.length;
-        for(int i = 0; i < arraySize; i++) {
-            questionBox.append(sentences[1]);
-        }
-
-        }
-
-        // 1. Collect all sentences from the data passed from the Question activity
         // 2. Randomly choose one sentence
+        Random random = new Random();
+        int ranSentenceIndex = random.nextInt(sentences.length);
+        String randomSentence = (sentences[ranSentenceIndex]);
+
+//        int arraySize = sentences.length;
+//        for(int i = 0; i < arraySize; i++) {
+//            questionBox.append(sentences[1]);
+//        }
         // 3. Randomly choose one noun or verb from the sentence to be the blank
+        // Load POS detector model
+        POSModel partsModel = null;
+
+        try {
+            inputStream = getAssets().open("en-posmaxent.bin");
+            partsModel = new POSModel(inputStream);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Instantiating the POSTaggerME class
+        if (partsModel != null) {
+            POSTaggerME tagger = new POSTaggerME(partsModel);
+        }
+
         // 4. Replace the noun or verb in the sentence with _____ and the noun or verb is the answer
         // 5. Show the sentence with the blank in the text view
         // 6. When the user hits the submit button, check the edit text for the answer
         // 7. Show Correct/Incorrect toast message
         // 8. Allow the user to refresh for another randomized question
+
+        }
     }
