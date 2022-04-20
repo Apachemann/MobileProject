@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
@@ -15,6 +17,7 @@ import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.sentdetect.SentenceDetectorME;
 import opennlp.tools.sentdetect.SentenceModel;
 import opennlp.tools.tokenize.WhitespaceTokenizer;
+import opennlp.tools.util.Span;
 
 public class FillInTheBlankQuestion extends AppCompatActivity {
 
@@ -28,10 +31,14 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         setContentView(R.layout.activity_fill_in_the_blank_question);
 
         // Create a new fill-in-the-blank question when the activity is started
-        createFillInTheBlankQuestion();
+        try {
+            createFillInTheBlankQuestion();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    protected void createFillInTheBlankQuestion() {
+    protected void createFillInTheBlankQuestion() throws Exception {
         // Grab the object of the text field
         questionBox = findViewById(R.id.fillInQuestion);
 
@@ -49,13 +56,8 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         SentenceModel sentModel = null;
         String[] sentences = null;
 
-        try {
-            inputStream = getAssets().open("en-sent.bin");
-            sentModel = new SentenceModel(inputStream);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        inputStream = getAssets().open("en-sent.bin");
+        sentModel = new SentenceModel(inputStream);
 
         // Instantiating the SentenceDetectorME class
         if (sentModel != null) {
@@ -70,23 +72,20 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         int ranSentenceIndex = random.nextInt(sentences.length);
         String randomSentence = (sentences[ranSentenceIndex]);
 
+        //questionBox.append(sentences[1]);
+
 //        int arraySize = sentences.length;
 //        for(int i = 0; i < arraySize; i++) {
-//            questionBox.append(sentences[1]);
+//            questionBox.append(sentences[i]);
 //        }
         // 3. Randomly choose one noun or verb from the sentence to be the blank
         // Load POS detector model
         POSModel partsModel = null;
 
-        try {
-            inputStream = getAssets().open("en-posmaxent.bin");
-            partsModel = new POSModel(inputStream);
+        inputStream = getAssets().open("en-posmaxent.bin");
+        partsModel = new POSModel(inputStream);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //** Causes Error **//
+        // Causes Error //
         // java.lang.RuntimeException: Unable to start activity ComponentInfo{com.example.snapnstudy/com.example.snapnstudy.FillInTheBlankQuestion}: java.lang.IllegalStateException: javax.xml.parsers.ParserConfigurationException: http://javax.xml.XMLConstants/feature/secure-processing
         // Instantiating the POSTaggerME class
         POSTaggerME tagger = new POSTaggerME(partsModel);
