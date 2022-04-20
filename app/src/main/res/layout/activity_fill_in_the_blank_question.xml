@@ -9,10 +9,10 @@
     <TextView
         android:id="@+id/fillInQuestion"
         android:layout_width="335dp"
-        android:layout_height="511dp"
+        android:layout_height="450dp"
 
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="48dp"
         android:ems="10"
         android:gravity="start|top"
         android:textSize="22sp"

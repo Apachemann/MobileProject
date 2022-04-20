@@ -10,17 +10,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import opennlp.tools.sentdetect.SentenceDetectorME;
 import opennlp.tools.sentdetect.SentenceModel;
+import opennlp.tools.util.Span;
 
 public class FillInTheBlankQuestion extends AppCompatActivity {
 
     // Declare initial variables
     TextView questionBox;
     String questionData;
-
-    //Loading sentence detector model
-    InputStream inputStream = null;
-    SentenceModel model = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +29,22 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         createFillInTheBlankQuestion();
     }
 
-    protected void loadOpenNLP() {
+    protected void createFillInTheBlankQuestion() {
+        // Grab the object of the text field
+        questionBox = findViewById(R.id.fillInQuestion);
+
+        // Collect the data passed from the Question activity
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            questionData = extras.getString("ocrGenData");
+            // Set the question text field to display the data
+            // questionBox.setText(questionData);
+        }
+
+        // Load sentence detector model
         InputStream inputStream = null;
         SentenceModel model = null;
+        String[] sentences = null;
 
         try {
             inputStream = getAssets().open("en-sent.bin");
@@ -42,23 +53,22 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
-    protected void createFillInTheBlankQuestion() {
-        // Grab the object of the text field
-        questionBox=findViewById(R.id.fillInQuestion);
+        // Instantiating the SentenceDetectorME class
+        if (model != null) {
+            SentenceDetectorME detector = new SentenceDetectorME(model);
 
-        // Collect the data passed from the Question activity
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            questionData = extras.getString("ocrGenData");
-            // Set the question text field to display the data
-            questionBox.setText(questionData);
-
+            //Detecting the sentence(s)
+            sentences = detector.sentDetect(questionData);
         }
 
-        //Loading sentence detector model
-        loadOpenNLP();
+        // Print the sentences to the text view
+        int arraySize = sentences.length;
+        for(int i = 0; i < arraySize; i++) {
+            questionBox.append(sentences[1]);
+        }
+
+        }
 
         // 1. Collect all sentences from the data passed from the Question activity
         // 2. Randomly choose one sentence
@@ -69,4 +79,3 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         // 7. Show Correct/Incorrect toast message
         // 8. Allow the user to refresh for another randomized question
     }
-}
