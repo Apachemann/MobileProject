@@ -85,8 +85,8 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         inputStream = getAssets().open("en-posmaxent.bin");
         partsModel = new POSModel(inputStream);
 
-        // Causes Error //
-        // java.lang.RuntimeException: Unable to start activity ComponentInfo{com.example.snapnstudy/com.example.snapnstudy.FillInTheBlankQuestion}: java.lang.IllegalStateException: javax.xml.parsers.ParserConfigurationException: http://javax.xml.XMLConstants/feature/secure-processing
+        // Causes system error when trying to load this activity //
+        // java.lang.IllegalStateException: javax.xml.parsers.ParserConfigurationException: http://javax.xml.XMLConstants/feature/secure-processing
         // Instantiating the POSTaggerME class
         POSTaggerME tagger = new POSTaggerME(partsModel);
 
