@@ -12,9 +12,11 @@ import java.io.InputStream;
 import java.util.Random;
 
 import opennlp.tools.postag.POSModel;
+import opennlp.tools.postag.POSSample;
 import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.sentdetect.SentenceDetectorME;
 import opennlp.tools.sentdetect.SentenceModel;
+import opennlp.tools.tokenize.WhitespaceTokenizer;
 import opennlp.tools.util.Span;
 
 public class FillInTheBlankQuestion extends AppCompatActivity {
@@ -88,9 +90,18 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         }
 
         // Instantiating the POSTaggerME class
-        if (partsModel != null) {
-            POSTaggerME tagger = new POSTaggerME(partsModel);
-        }
+        POSTaggerME tagger = new POSTaggerME(partsModel);
+
+        //Tokenizing the sentence using WhitespaceTokenizer class
+        WhitespaceTokenizer whitespaceTokenizer= WhitespaceTokenizer.INSTANCE;
+        String[] tokens = whitespaceTokenizer.tokenize(randomSentence);
+
+        //Generating tags
+        String[] tags = tagger.tag(tokens);
+
+        //Instantiating the POSSample class
+        POSSample sample = new POSSample(tokens, tags);
+        questionBox.append(sample.toString());
 
         // 4. Replace the noun or verb in the sentence with _____ and the noun or verb is the answer
         // 5. Show the sentence with the blank in the text view
