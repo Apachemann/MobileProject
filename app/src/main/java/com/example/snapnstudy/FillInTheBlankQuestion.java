@@ -7,12 +7,26 @@ import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 
 public class FillInTheBlankQuestion extends AppCompatActivity {
 
     // Declare initial variables
     TextView questionBox;
     String questionData;
+
+    //Loading sentence detector model
+    InputStream inputStream = null;
+    SentenceModel model = null;
+
+        try {
+
+        inputStream = getAssets().open("en-sent.bin");
+        model = new SentenceModel(inputStream);
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
