@@ -74,7 +74,7 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
 //        for(int i = 0; i < arraySize; i++) {
 //            questionBox.append(sentences[i]);
 //        }
-        // 3. Randomly choose one noun or verb from the sentence to be the blank
+        // 3. Choose one noun from the sentence to be the blank
         // Load POS detector model
         POSModel partsModel = null;
 
@@ -96,31 +96,31 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         //Instantiating the POSSample class
         POSSample sample = new POSSample(tokens, tags);
 
-        
-        
-        if (sample.toString().contains("_NPP")) {
-            int index = sample.toString().indexOf("_NPP");
-            String indexStr = Integer.toString(index);
-            questionBox.append(indexStr);
-        } else if (sample.toString().contains("_NN")) {
-            int indexEnd = sample.toString().indexOf("_NN");
-            int indexStart = indexEnd;
+        int indexEnd;
+        int indexStart;
+        char wordFinder = ' ';
+        String blankWord;
 
-            char wordFinder = sample.toString().charAt(indexEnd);
+        if (sample.toString().contains("_NN")) {
 
-            while (wordFinder != ' ') {
-                wordFinder = sample.toString().charAt(--indexEnd);
-                indexStart--;
+            indexEnd = sample.toString().indexOf("_NN");
+            indexStart = indexEnd;
+            wordFinder = sample.toString().charAt(indexEnd);
+
+            while (!Character.isWhitespace(wordFinder)) {
+                wordFinder = sample.toString().charAt(indexStart);
+                indexStart = indexStart - 1;
             }
 
-            String blankWord = sample.toString().substring(indexStart, indexEnd);
-            String indexStr = Integer.toString(indexEnd);
+            blankWord = sample.toString().substring(indexStart + 2, indexEnd);
+            blankWord.trim();
             questionBox.append(blankWord);
+        } else {
+            questionBox.append("This sentence doesn't contain anything useful!");
         }
-//        questionBox.append(sample.toString());
-//        questionBox.append(randomSentence);
 
-        // 4. Replace the noun or verb in the sentence with _____ and the noun or verb is the answer
+
+        // 4. Replace the noun in the sentence with _____ and the noun or verb is the answer
         // 5. Show the sentence with the blank in the text view
         // 6. When the user hits the submit button, check the edit text for the answer
         // 7. Show Correct/Incorrect toast message
