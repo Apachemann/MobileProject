@@ -95,7 +95,30 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
 
         //Instantiating the POSSample class
         POSSample sample = new POSSample(tokens, tags);
-        questionBox.append(sample.toString());
+
+        
+        
+        if (sample.toString().contains("_NPP")) {
+            int index = sample.toString().indexOf("_NPP");
+            String indexStr = Integer.toString(index);
+            questionBox.append(indexStr);
+        } else if (sample.toString().contains("_NN")) {
+            int indexEnd = sample.toString().indexOf("_NN");
+            int indexStart = indexEnd;
+
+            char wordFinder = sample.toString().charAt(indexEnd);
+
+            while (wordFinder != ' ') {
+                wordFinder = sample.toString().charAt(--indexEnd);
+                indexStart--;
+            }
+
+            String blankWord = sample.toString().substring(indexStart, indexEnd);
+            String indexStr = Integer.toString(indexEnd);
+            questionBox.append(blankWord);
+        }
+//        questionBox.append(sample.toString());
+//        questionBox.append(randomSentence);
 
         // 4. Replace the noun or verb in the sentence with _____ and the noun or verb is the answer
         // 5. Show the sentence with the blank in the text view
