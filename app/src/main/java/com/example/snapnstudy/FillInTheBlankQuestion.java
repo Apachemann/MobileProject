@@ -27,6 +27,7 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
     EditText answerBox;
     String questionData;
     String blankWord;
+    String randomSentence;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         // 2. Randomly choose one sentence
         Random random = new Random();
         int ranSentenceIndex = random.nextInt(sentences.length);
-        String randomSentence = (sentences[ranSentenceIndex]);
+        randomSentence = (sentences[ranSentenceIndex]);
 
         //questionBox.append(sentences[1]);
 
@@ -108,6 +109,9 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         int indexEnd;
         int indexStart;
         char wordFinder = ' ';
+        String [] wordPickerFromSent;
+
+        questionBox.append(sample.toString());
 
         if (sample.toString().contains("_NN")) {
 
@@ -122,7 +126,12 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
 
             blankWord = sample.toString().substring(indexStart + 2, indexEnd);
             blankWord.trim();
+
+            // Pick a random word in case there are no nouns
         } else {
+            wordPickerFromSent = randomSentence.split(" ");
+            Random randomWord = new Random();
+            blankWord = wordPickerFromSent[randomWord.nextInt(wordPickerFromSent.length)];
             questionBox.append("This sentence doesn't contain anything useful!");
         }
 
