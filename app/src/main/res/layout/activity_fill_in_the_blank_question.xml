@@ -15,11 +15,12 @@
         android:layout_marginBottom="48dp"
         android:ems="10"
         android:gravity="start|top"
-        android:textSize="22sp"
+        android:textSize="44sp"
         app:layout_constraintBottom_toTopOf="@+id/fillInText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.428" />
 
     <EditText
         android:id="@+id/editTextAnswer"

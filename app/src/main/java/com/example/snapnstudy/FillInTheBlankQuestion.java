@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.Random;
 
 import opennlp.tools.postag.POSModel;
@@ -111,7 +112,7 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         char wordFinder = ' ';
         String [] wordPickerFromSent;
 
-        questionBox.append(sample.toString());
+//        questionBox.append(sample.toString());
 
         if (sample.toString().contains("_NN")) {
 
@@ -119,13 +120,25 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
             indexStart = indexEnd;
             wordFinder = sample.toString().charAt(indexEnd);
 
-            while (!Character.isWhitespace(wordFinder)) {
+            while (!Character.isWhitespace(wordFinder) && indexStart != 0) {
                 wordFinder = sample.toString().charAt(indexStart);
                 indexStart = indexStart - 1;
             }
 
-            blankWord = sample.toString().substring(indexStart + 2, indexEnd);
+//            String indexStartStr = Integer.toString(indexStart);
+//            questionBox.append("\n" + indexStartStr);
+//
+//            String indexEndStr = Integer.toString(indexEnd);
+//            questionBox.append("\n" + indexEndStr);
+
+            if (indexStart == 0) {
+                blankWord = sample.toString().substring(indexStart, indexEnd);
+            } else {
+                blankWord = sample.toString().substring(indexStart + 2, indexEnd);
+            }
             blankWord.trim();
+
+//            questionBox.append("\n" + blankWord);
 
             // Pick a random word in case there are no nouns
         } else {
@@ -145,9 +158,9 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         submitAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userInput = answerBox.getText().toString();
+                String userInput = answerBox.getText().toString().toLowerCase(Locale.ROOT);
                 // 7. Show Correct/Incorrect toast message
-                if(userInput.contains(blankWord)){
+                if(userInput.contains(blankWord.toLowerCase(Locale.ROOT))){
                     Toast.makeText(FillInTheBlankQuestion.this, "Your answer is correct!",
                             Toast.LENGTH_SHORT).show();
                 } else {
