@@ -3,9 +3,11 @@ package com.example.snapnstudy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.Random;
@@ -131,9 +133,20 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         questionBox.append(blanked);
 
         // 6. When the user hits the submit button, check the edit text for the answer
-
-
-        // 7. Show Correct/Incorrect toast message
+        submitAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String userInput = answerBox.getText().toString();
+                // 7. Show Correct/Incorrect toast message
+                if(userInput.contains(blankWord)){
+                    Toast.makeText(FillInTheBlankQuestion.this, "Your answer is correct!",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(FillInTheBlankQuestion.this, "Your answer is incorrect. Try again.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         // 8. Allow the user to refresh for another randomized question
 
         }
