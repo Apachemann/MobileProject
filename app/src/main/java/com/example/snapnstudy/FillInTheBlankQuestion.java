@@ -3,6 +3,8 @@ package com.example.snapnstudy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.InputStream;
@@ -18,8 +20,11 @@ import opennlp.tools.tokenize.WhitespaceTokenizer;
 public class FillInTheBlankQuestion extends AppCompatActivity {
 
     // Declare initial variables
+    Button submitAnswer;
     TextView questionBox;
+    EditText answerBox;
     String questionData;
+    String blankWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +40,10 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
     }
 
     protected void createFillInTheBlankQuestion() throws Exception {
-        // Grab the object of the text field
+        // Grab the object of the text field, edit text, and button
         questionBox = findViewById(R.id.fillInQuestion);
+        answerBox = findViewById(R.id.editTextAnswer);
+        submitAnswer = findViewById(R.id.submitBtn);
 
         // Collect the data passed from the Question activity
         Bundle extras = getIntent().getExtras();
@@ -99,7 +106,6 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
         int indexEnd;
         int indexStart;
         char wordFinder = ' ';
-        String blankWord;
 
         if (sample.toString().contains("_NN")) {
 
@@ -114,15 +120,19 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
 
             blankWord = sample.toString().substring(indexStart + 2, indexEnd);
             blankWord.trim();
-            questionBox.append(blankWord);
         } else {
             questionBox.append("This sentence doesn't contain anything useful!");
         }
 
+        // 4. Replace the noun in the sentence with _____ and the noun is the answer
+        String blanked = randomSentence.replaceAll(blankWord, "_____");
 
-        // 4. Replace the noun in the sentence with _____ and the noun or verb is the answer
         // 5. Show the sentence with the blank in the text view
+        questionBox.append(blanked);
+
         // 6. When the user hits the submit button, check the edit text for the answer
+
+
         // 7. Show Correct/Incorrect toast message
         // 8. Allow the user to refresh for another randomized question
 
