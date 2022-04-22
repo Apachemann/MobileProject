@@ -136,7 +136,11 @@ public class FillInTheBlankQuestion extends AppCompatActivity {
             } else {
                 blankWord = sample.toString().substring(indexStart + 2, indexEnd);
             }
-            blankWord.trim();
+            // Remove any whitespace
+            blankWord = blankWord.trim();
+
+            // Remove punctuation
+            blankWord = blankWord.replaceAll("\\p{Punct}","");
 
 //            questionBox.append("\n" + blankWord);
 
