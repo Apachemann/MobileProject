@@ -15,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class Question extends AppCompatActivity {
     String TextFinal;
     TextView FixedText;
-    ImageButton goHome;
+    Button fillBlankQuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class Question extends AppCompatActivity {
 
         // Grab the object of the edit text field and floating action button
         FixedText=findViewById(R.id.question);
-        goHome=findViewById(R.id.homeFromText);
+        fillBlankQuestion=findViewById(R.id.fillBlankGenBtn);
 
         // Collect the OCR data passed from MainActivity
         Bundle extras = getIntent().getExtras();
@@ -36,12 +36,15 @@ public class Question extends AppCompatActivity {
 
         }
 
-        goHome.setOnClickListener(new View.OnClickListener() {
+        fillBlankQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String text = ocrErrorFix.getText().toString();
-//                MainActivity.addItem(text);
-                finish();
+                // Take text from the question box to be used to generate a fill-in-the-blank question
+                String fillQuestionGen = FixedText.getText().toString();
+                fillQuestionGen.trim();
+                Intent intent = new Intent(Question.this, FillInTheBlankQuestion.class);
+                intent.putExtra("ocrGenData", fillQuestionGen);
+                startActivity(intent);
             }
         });
 

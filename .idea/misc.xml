@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/apach/AndroidStudioProjects/MobileProject/app/src/main/res/layout/activity_create.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/apach/AndroidStudioProjects/MobileProject/app/src/main/res/layout/activity_fill_in_the_blank_question.xml" value="0.3741648106904232" />
         <entry key="..\:/Users/apach/AndroidStudioProjects/MobileProject/app/src/main/res/layout/activity_fix_data.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/apach/AndroidStudioProjects/MobileProject/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/apach/AndroidStudioProjects/MobileProject/app/src/main/res/layout/activity_question.xml" value="0.36666666666666664" />
@@ -17,6 +18,7 @@
         <entry key="..\:/Users/apach/AndroidStudioProjects/SnapNStudy/app/src/main/res/layout/activity_question_result.xml" value="0.25" />
         <entry key="..\:/Users/apach/AndroidStudioProjects/SnapNStudy/app/src/main/res/layout/activity_resize_picture.xml" value="0.25" />
         <entry key="..\:/Users/apach/StudioProjects/MobileProject/app/src/main/res/layout/activity_create_picture.xml" value="0.23097826086956522" />
+        <entry key="..\:/Users/apach/StudioProjects/MobileProject/app/src/main/res/layout/activity_information.xml" value="0.2513586956521739" />
         <entry key="..\:/Users/apach/StudioProjects/MobileProject/app/src/main/res/layout/activity_main.xml" value="0.15881458966565348" />
       </map>
     </option>

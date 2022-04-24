@@ -13,45 +13,6 @@
         tools:layout_editor_absoluteX="45dp"
         tools:layout_editor_absoluteY="0dp">
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="15dp"
-            android:text="2. After taking an image of some text you willbe directed to a page where you can edit/correct any mistakes made with the capturing of the text data."
-            app:layout_constraintBottom_toTopOf="@+id/textView10"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="17dp"
-            android:text="1. Begin by opening the camera with the camera button at the bottom of the homepage. You will then be taken to a page where you take an image of text with your phones camera."
-            app:layout_constraintBottom_toTopOf="@+id/textView9"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="505dp"
-            android:text="3. Finally you will want to save the text and go back to the homepage. From the homepage you can click on your saved text to access the question generator where you can answer questions based on the text."
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
         <VideoView
             android:id="@+id/videoView"
             android:layout_width="409dp"
@@ -70,6 +31,16 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/videoView"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/informationText"
+            android:layout_width="332dp"
+            android:layout_height="362dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="15dp"
+            android:text="1. Begin by opening the camera with the camera button at the bottom of the homepage. You will then be taken to a page where you take an image of text with your phones camera. \n \n 2. After taking an image of some text you will be directed to a page where you can edit/correct any mistakes made with the capturing of the text data. \n \n 3. Finally you will want to save the text and go back to the homepage. From the homepage you can click on your saved text to access the question generator where you can answer questions based on the text."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
