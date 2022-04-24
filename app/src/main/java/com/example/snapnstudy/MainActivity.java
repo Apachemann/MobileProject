@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static ListViewAdapter adapter;
     ImageButton capture_picture;
     String text, name;
+    ArrayList<String> temp = new ArrayList<String>();
     private String currentPhotoPath;
 //  EditText input;
 //  ImageView enter;
@@ -205,9 +206,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     @Override
     protected void onDestroy() {
+        String x;
+        temp = new ArrayList<String>();
         File path = getApplicationContext().getFilesDir();
         try {
             FileOutputStream writer = new FileOutputStream(new File(path, "list.txt"));
+            for (int i = 0; i < items.size(); i++){
+                if (i < items.size()-1) {
+                    x = items.get(i) + "///";
+                    temp.add(x);
+                }else{
+                    x = items.get(i);
+                    temp.add(x);
+                }
+            }
+            items = temp;
             writer.write(items.toString().getBytes());
             writer.close();
         }catch (Exception e){
