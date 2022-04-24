@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             String s = new String(content);
             s = s.substring(1, s.length()-1);
-            String split [] = s.split(",");
+            String split [] = s.split("///,");
             items = new ArrayList<>(Arrays.asList(split));
             adapter = new ListViewAdapter(this, items);
             listView.setAdapter(adapter);
